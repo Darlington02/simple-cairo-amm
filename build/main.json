@@ -136,7 +136,164 @@
         "L1_HANDLER": []
     },
     "program": {
-        "attributes": [],
+        "attributes": [
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__.modify_account_balance"
+                ],
+                "end_pc": 216,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 16,
+                        "offset": 69
+                    },
+                    "reference_ids": {
+                        "__main__.modify_account_balance.account_id": 131,
+                        "__main__.modify_account_balance.amount": 133,
+                        "__main__.modify_account_balance.current_balance": 140,
+                        "__main__.modify_account_balance.new_balance": 141,
+                        "__main__.modify_account_balance.pedersen_ptr": 138,
+                        "__main__.modify_account_balance.range_check_ptr": 139,
+                        "__main__.modify_account_balance.syscall_ptr": 137,
+                        "__main__.modify_account_balance.token_type": 132
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 210,
+                "value": "exceeds maximum allowed tokens!"
+            },
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__",
+                    "__main__.set_pool_token_balance"
+                ],
+                "end_pc": 267,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 20,
+                        "offset": 0
+                    },
+                    "reference_ids": {
+                        "__main__.set_pool_token_balance.balance": 178,
+                        "__main__.set_pool_token_balance.pedersen_ptr": 180,
+                        "__main__.set_pool_token_balance.range_check_ptr": 181,
+                        "__main__.set_pool_token_balance.syscall_ptr": 179,
+                        "__main__.set_pool_token_balance.token_type": 177
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 261,
+                "value": "exceeds maximum allowed tokens!"
+            },
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__",
+                    "__main__.swap"
+                ],
+                "end_pc": 394,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 27,
+                        "offset": 6
+                    },
+                    "reference_ids": {
+                        "__main__.swap.account_id": 270,
+                        "__main__.swap.amount_from": 265,
+                        "__main__.swap.pedersen_ptr": 267,
+                        "__main__.swap.range_check_ptr": 268,
+                        "__main__.swap.syscall_ptr": 269,
+                        "__main__.swap.token_from": 264
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 387,
+                "value": "token not allowed in pool!"
+            },
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__",
+                    "__main__.swap"
+                ],
+                "end_pc": 400,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 27,
+                        "offset": 9
+                    },
+                    "reference_ids": {
+                        "__main__.swap.__temp20": 271,
+                        "__main__.swap.__temp21": 272,
+                        "__main__.swap.__temp22": 273,
+                        "__main__.swap.account_id": 270,
+                        "__main__.swap.amount_from": 265,
+                        "__main__.swap.pedersen_ptr": 267,
+                        "__main__.swap.range_check_ptr": 268,
+                        "__main__.swap.syscall_ptr": 269,
+                        "__main__.swap.token_from": 264
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 394,
+                "value": "exceeds maximum allowed tokens!"
+            },
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__",
+                    "__main__.swap"
+                ],
+                "end_pc": 412,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 27,
+                        "offset": 103
+                    },
+                    "reference_ids": {
+                        "__main__.swap.__temp20": 271,
+                        "__main__.swap.__temp21": 272,
+                        "__main__.swap.__temp22": 273,
+                        "__main__.swap.account_from_balance": 278,
+                        "__main__.swap.account_id": 270,
+                        "__main__.swap.amount_from": 265,
+                        "__main__.swap.pedersen_ptr": 276,
+                        "__main__.swap.range_check_ptr": 277,
+                        "__main__.swap.syscall_ptr": 275,
+                        "__main__.swap.token_from": 264
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 407,
+                "value": "insufficient balance!"
+            },
+            {
+                "accessible_scopes": [
+                    "__main__",
+                    "__main__",
+                    "__main__.init_pool"
+                ],
+                "end_pc": 502,
+                "flow_tracking_data": {
+                    "ap_tracking": {
+                        "group": 32,
+                        "offset": 0
+                    },
+                    "reference_ids": {
+                        "__main__.init_pool.pedersen_ptr": 340,
+                        "__main__.init_pool.range_check_ptr": 341,
+                        "__main__.init_pool.syscall_ptr": 339,
+                        "__main__.init_pool.token_a": 337,
+                        "__main__.init_pool.token_b": 338
+                    }
+                },
+                "name": "error_message",
+                "start_pc": 491,
+                "value": "exceeds maximum allowed tokens!"
+            }
+        ],
         "builtins": [
             "pedersen",
             "range_check"

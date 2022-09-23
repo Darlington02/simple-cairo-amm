@@ -32,7 +32,11 @@ func modify_account_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, rang
 ) {
     let (current_balance) = account_balance.read(account_id, token_type);
     tempvar new_balance = current_balance + amount;
-    assert_nn_le(new_balance, BALANCE_UPPER_BOUND - 1);
+
+    with_attr error_message("exceeds maximum allowed tokens!"){
+        assert_nn_le(new_balance, BALANCE_UPPER_BOUND - 1);
+    }
+
     account_balance.write(account_id=account_id, token_type=token_type, value=new_balance);
     return ();
 }
@@ -50,7 +54,10 @@ func get_account_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, r
 func set_pool_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     token_type: felt, balance: felt
 ) {
-    assert_nn_le(balance, BALANCE_UPPER_BOUND - 1);
+    with_attr error_message("exceeds maximum allowed tokens!"){
+        assert_nn_le(balance, BALANCE_UPPER_BOUND - 1);
+    }
+
     pool_balance.write(token_type, balance);
     return ();
 }
@@ -103,14 +110,20 @@ func swap{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     let (account_id) = get_caller_address();
 
     // verify token_from is TOKEN_TYPE_A or TOKEN_TYPE_B
-    assert (token_from - TOKEN_TYPE_A) * (token_from - TOKEN_TYPE_B) = 0;
+    with_attr error_message("token not allowed in pool!"){
+        assert (token_from - TOKEN_TYPE_A) * (token_from - TOKEN_TYPE_B) = 0;
+    }
 
     // check requested amount_from is valid
-    assert_nn_le(amount_from, BALANCE_UPPER_BOUND - 1);
+    with_attr error_message("exceeds maximum allowed tokens!"){
+        assert_nn_le(amount_from, BALANCE_UPPER_BOUND - 1);
+    }
 
     // check user has enough funds
     let (account_from_balance) = get_account_token_balance(account_id=account_id, token_type=token_from);
-    assert_le(amount_from, account_from_balance);
+    with_attr error_message("insufficient balance!"){
+        assert_le(amount_from, account_from_balance);
+    }
 
     let (token_to) = get_opposite_token(token_type=token_from);
     let (amount_to) = do_swap(account_id=account_id, token_from=token_from, token_to=token_to, amount_from=amount_from);
@@ -136,8 +149,10 @@ func add_demo_token{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_
 func init_pool{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     token_a: felt, token_b: felt
 ) {
-    assert_nn_le(token_a, POOL_UPPER_BOUND - 1);
-    assert_nn_le(token_b, POOL_UPPER_BOUND - 1);
+    with_attr error_message("exceeds maximum allowed tokens!"){
+        assert_nn_le(token_a, POOL_UPPER_BOUND - 1);
+        assert_nn_le(token_b, POOL_UPPER_BOUND - 1);
+    }
 
     set_pool_token_balance(token_type=TOKEN_TYPE_A, balance=token_a);
     set_pool_token_balance(token_type=TOKEN_TYPE_B, balance=token_b);
