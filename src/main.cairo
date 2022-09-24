@@ -81,7 +81,7 @@ func do_swap{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     let (local amm_to_balance) = get_pool_token_balance(token_type=token_to);
 
     // calculate swap amount
-    let (local amount_to, _) = unsigned_div_rem((amm_to_balance * amm_from_balance), (amm_from_balance + amount_from));
+    let (local amount_to, _) = unsigned_div_rem((amm_to_balance * amount_from), (amm_from_balance + amount_from));
 
     // update token_from balances
     modify_account_balance(account_id=account_id, token_type=token_from, amount=-amount_from);
