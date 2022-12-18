@@ -8,6 +8,7 @@ from starkware.starknet.common.syscalls import (get_caller_address, storage_read
 // the maximum amount of each token that belongs to the AMM
 const BALANCE_UPPER_BOUND = 2 ** 64;
 
+// this could adresses of type A and type B
 const TOKEN_TYPE_A = 1;
 const TOKEN_TYPE_B = 2;
 
@@ -50,7 +51,7 @@ func get_account_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, r
 }
 
 // set pool balance for a given token
-@view
+@external
 func set_pool_token_balance{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     token_type: felt, balance: felt
 ) {
